@@ -1,19 +1,34 @@
-# Secret Santa
+# Navidad Family Group - Amigo Invisible 🎅🎄
 
-<img align="right" height="160" src="https://user-images.githubusercontent.com/1037931/87014534-92e21280-c1cc-11ea-9675-5f2c0f3c287f.png"/>
+¡Bienvenido a la herramienta oficial para organizar el Amigo Invisible de la familia!
 
-Check it live on [mael.dev/secretsanta/](https://mael.dev/secretsanta/) 🎄
+Esta aplicación web permite organizar el intercambio de regalos de forma sencilla, divertida y sin necesidad de crear cuentas ni correos electrónicos.
 
-Should you appreciate this tool so much that you'd like to thank me, you can either drop a friendly note in this repository's issues, or be a [one-time sponsor](https://github.com/sponsors/arcanis?frequency=one-time&sponsor=arcanis). Either would make my day 😊
+## ✨ Características
 
-<br/>
+*   **Sin Cuentas**: No hace falta registrarse.
+*   **Privado y Seguro**: La información se guarda en tu navegador y los enlaces son únicos.
+*   **Experiencia Festiva**:
+    *   ❄️ Efecto de nieve cayendo.
+    *   🎵 Música navideña de fondo.
+    *   ⏳ Cuenta regresiva para Navidad.
+    *   🎁 Revelación de regalo interactiva con confeti.
+*   **Fácil de Compartir**: Genera un enlace personalizado para cada participante que puedes enviar por WhatsApp.
 
-## License (MIT)
+## 🚀 Cómo Usar
 
-> **Copyright © 2015 Maël Nison**
->
-> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
->
-> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+1.  **Agrega Participantes**: Ingresa los nombres de todos los familiares que van a participar.
+2.  **Configura Reglas**: Si hay personas que no pueden regalarse entre sí (ej. parejas), puedes añadir excepciones.
+3.  **Genera Parejas**: La aplicación asignará aleatoriamente quién le regala a quién.
+4.  **Comparte**: Envía a cada persona su enlace único. Al abrirlo, verán una animación especial y descubrirán a quién le tienen que regalar.
+
+## 🛠️ Tecnologías
+
+Construido con:
+*   React + Vite
+*   TypeScript
+*   Tailwind CSS
+*   Framer Motion (Animaciones)
+
+---
+¡Que tengan una muy Feliz Navidad! 🥂
