@@ -874,6 +874,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/canvas-confetti@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "@types/canvas-confetti@npm:1.9.0"
+  checksum: 10c0/ffe2c674d466b8e13472c81ab2a97056f3433fd40a3513dbc1bb76764e4e7c3ff0a2a58d37b16ea6a245c831077c553db321b069dda6572eab59f2be61137b2e
+  languageName: node
+  linkType: hard
+
 "@types/crypto-js@npm:^3":
   version: 3.1.47
   resolution: "@types/crypto-js@npm:3.1.47"
@@ -1208,6 +1215,13 @@ __metadata:
   version: 1.0.30001683
   resolution: "caniuse-lite@npm:1.0.30001683"
   checksum: 10c0/0ca7f4f2fbd0c71fde5a14ca2e29bb1dcb84c095d7a3d88e47371e062f276f1dc31da3f10931ec134ef7fb096259c0d67c9ffb843a9ec4a040a85eb2fea0bdec
+  languageName: node
+  linkType: hard
+
+"canvas-confetti@npm:^1.9.4":
+  version: 1.9.4
+  resolution: "canvas-confetti@npm:1.9.4"
+  checksum: 10c0/08f11b5fa20b365922108828d7488f9b3eac2afdf39bc478339268c1250b5215df82682d7074520a3f0f72f4728f9703bbc937dcfe793f196b44e6e8ac0b1f7b
   languageName: node
   linkType: hard
 
@@ -2760,12 +2774,14 @@ __metadata:
     "@fontsource/dancing-script": "npm:^5.1.0"
     "@fontsource/style-script": "npm:^5.1.0"
     "@phosphor-icons/react": "npm:^2.1.7"
+    "@types/canvas-confetti": "npm:^1.9.0"
     "@types/crypto-js": "npm:^3"
     "@types/react": "npm:^18.3.12"
     "@types/react-dom": "npm:^18.3.1"
     "@types/react-world-flags": "npm:^1"
     "@vitejs/plugin-react": "npm:^4.3.4"
     autoprefixer: "npm:^10.4.20"
+    canvas-confetti: "npm:^1.9.4"
     country-flag-icons: "npm:^1.5.13"
     crypto-js: "npm:3.1.2"
     fast-check: "npm:^3.23.1"

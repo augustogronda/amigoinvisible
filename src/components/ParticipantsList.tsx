@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { ArrowsClockwise, List, TextT } from "@phosphor-icons/react";
+import { ArrowsClockwise } from "@phosphor-icons/react";
 import { Participant } from '../types';
 import { useTranslation } from 'react-i18next';
 import { ParticipantRow } from './ParticipantRow';
-import { ParticipantsTextView } from './ParticipantsTextView';
 import { produce } from 'immer';
 
 interface ParticipantsListProps {
@@ -26,9 +25,9 @@ export function ParticipantsList({
     if (id === nextParticipantId) {
       setNextParticipantId(crypto.randomUUID());
     }
-      
+
     onChangeParticipants(produce(participants, draft => {
-      draft[id] ??= {id, name, rules: []};
+      draft[id] ??= { id, name, rules: [] };
       draft[id].name = name;
     }));
   };
@@ -38,17 +37,17 @@ export function ParticipantsList({
       delete draft[id];
 
       for (const participant of Object.values(draft)) {
-        participant.rules = participant.rules.filter(rule => 
+        participant.rules = participant.rules.filter(rule =>
           rule.targetParticipantId !== id
         );
       }
     }));
   };
 
-  const participantsList = [...Object.values(participants), { 
-    id: nextParticipantId, 
-    name: '', 
-    rules: [] 
+  const participantsList = [...Object.values(participants), {
+    id: nextParticipantId,
+    name: '',
+    rules: []
   }];
 
   return (

@@ -1,16 +1,18 @@
 import "@fontsource/dancing-script/700.css";
 import { useEffect, useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { decryptText } from '../utils/crypto';
 import { PostCard } from '../components/PostCard';
 import { Trans, useTranslation } from 'react-i18next';
-import { MenuItem, SideMenu } from '../components/SideMenu';
-import { PageTransition } from '../components/PageTransition';
+import { MenuItem } from '../components/SideMenu';
 import { ArrowLeft, Info } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 import CryptoJS from 'crypto-js';
 import { Layout } from "../components/Layout";
 import { ReceiverData } from "../types";
+import { GiftReveal } from "../components/GiftReveal";
+import { WelcomeModal } from "../components/WelcomeModal";
+import { Countdown } from "../components/Countdown";
 
 async function loadPairing(searchParams: URLSearchParams): Promise<[string, ReceiverData]> {
   // Legacy pairings, not generated anymore; remove after 2025-01-01
@@ -19,7 +21,7 @@ async function loadPairing(searchParams: URLSearchParams): Promise<[string, Rece
     const key = searchParams.get(`key`)!;
     const pairing = searchParams.get(`pairing`)!;
 
-    return [name, {name: CryptoJS.AES.decrypt(pairing, key).toString(CryptoJS.enc.Utf8)}];
+    return [name, { name: CryptoJS.AES.decrypt(pairing, key).toString(CryptoJS.enc.Utf8) }];
   }
 
   if (searchParams.has(`to`)) {
@@ -33,7 +35,7 @@ async function loadPairing(searchParams: URLSearchParams): Promise<[string, Rece
       return [from, data];
     } catch {
       // If parsing fails, it's the old format (just the name)
-      return [from, {name: decrypted, hint: undefined} as ReceiverData];
+      return [from, { name: decrypted, hint: undefined } as ReceiverData];
     }
   }
 
@@ -51,7 +53,11 @@ export function Pairing() {
   useEffect(() => {
     const decryptReceiver = async () => {
       try {
-        setAssignment(await loadPairing(searchParams));
+        console.log('Starting decryption...');
+        console.log('SearchParams:', searchParams.toString());
+        const result = await loadPairing(searchParams);
+        console.log('Decryption result:', result);
+        setAssignment(result);
         setInstructions(searchParams.get('info'));
       } catch (err) {
         console.error('Decryption error:', err);
@@ -73,13 +79,14 @@ export function Pairing() {
   }
 
   const menuItems = [
-    <MenuItem key={`back`} to="/" icon={<ArrowLeft weight={`bold`}/>}>
+    <MenuItem key={`back`} to="/" icon={<ArrowLeft weight={`bold`} />}>
       {t('pairing.startYourOwn')}
     </MenuItem>
   ];
 
   return (
     <Layout menuItems={menuItems}>
+      <WelcomeModal />
       <div>
         {!loading && assignment && (
           <motion.div
@@ -100,13 +107,13 @@ export function Pairing() {
                   }}
                 />
               </p>
-              <div className="text-8xl font-bold text-center p-6 font-dancing-script">
-                {assignment[1].name}
-              </div>
+              <GiftReveal name={assignment[1].name}>
+                <Countdown />
+              </GiftReveal>
               {(instructions || assignment[1].hint) && (
                 <div className="mt-6 flex p-4 bg-gray-50 rounded-lg leading-6 text-gray-600 whitespace-pre-wrap">
                   <div className="mr-4">
-                    <Info size={24}/>
+                    <Info size={24} />
                   </div>
                   <div className="space-y-2">
                     {assignment[1].hint && <p>{assignment[1].hint}</p>}
