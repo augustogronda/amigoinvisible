@@ -1,5 +1,5 @@
 import React from "react";
-import { DownloadSimple } from "@phosphor-icons/react";
+import { DownloadSimple, Link, ChatText } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 import { CopyButton } from "./CopyButton";
 import { generateAssignmentLink, generateCSV } from "../utils/links";
@@ -75,19 +75,29 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
             <span className="font-medium self-center">
               {giver}:
             </span>
-            <CopyButton
-              textToCopy={() => {
-                const link = generateAssignmentLink(giver, receiver, hint, instructions);
-                return Promise.resolve(`¡Hola! 👋
+            <div className="flex gap-2">
+              <CopyButton
+                textToCopy={() => Promise.resolve(generateAssignmentLink(giver, receiver, hint, instructions))}
+                className="p-2 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-center justify-center gap-2 flex-1"
+              >
+                <Link size={20} weight="bold" />
+                Link
+              </CopyButton>
+              <CopyButton
+                textToCopy={() => {
+                  const link = generateAssignmentLink(giver, receiver, hint, instructions);
+                  return Promise.resolve(`¡Hola! 👋
 Este es tu enlace para conocer quién es tu amigo invisible:
 👉 ${link}
 
 ¡Que lo disfrutes y mucha suerte! 🎁✨`);
-              }}
-              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2"
-            >
-              {t('links.copySecretLink')}
-            </CopyButton>
+                }}
+                className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2 flex-1"
+              >
+                <ChatText size={20} weight="bold" />
+                Mensaje
+              </CopyButton>
+            </div>
           </React.Fragment>
         ))}
       </div>
