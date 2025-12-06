@@ -19,7 +19,7 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
   const currentHash = generateGenerationHash(participants);
   const hasChanged = currentHash !== assignments.hash;
 
-  const adjustedPairings = assignments.pairings.map(({giver, receiver}): [string, string, string | undefined] => [
+  const adjustedPairings = assignments.pairings.map(({ giver, receiver }): [string, string, string | undefined] => [
     participants[giver.id]?.name ?? giver.name,
     participants[receiver.id]?.name ?? receiver.name,
     participants[receiver.id]?.hint,
@@ -76,7 +76,14 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
               {giver}:
             </span>
             <CopyButton
-              textToCopy={() => generateAssignmentLink(giver, receiver, hint, instructions)}
+              textToCopy={() => {
+                const link = generateAssignmentLink(giver, receiver, hint, instructions);
+                return `¡Hola! 👋
+Este es tu enlace para conocer quién es tu amigo invisible:
+👉 ${link}
+
+¡Que lo disfrutes y mucha suerte! 🎁✨`;
+              }}
               className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2"
             >
               {t('links.copySecretLink')}
