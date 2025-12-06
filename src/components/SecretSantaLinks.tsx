@@ -78,7 +78,7 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
             <div className="flex gap-2">
               <CopyButton
                 textToCopy={() => Promise.resolve(generateAssignmentLink(giver, receiver, hint, instructions))}
-                className="p-2 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-center justify-center gap-2 flex-1"
+                className="p-2 bg-transparent border border-gray-400 text-gray-700 rounded hover:bg-gray-100 flex items-center justify-center gap-2 flex-1"
               >
                 <Link size={20} weight="bold" />
                 Link

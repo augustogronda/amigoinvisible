@@ -7,6 +7,7 @@ module.exports = {
       fontFamily: {
         'cherry-swash': ['Cherry Swash', 'serif'],
         'dancing-script': ['Dancing Script', 'cursive'],
+        'quicksand': ['Quicksand', 'sans-serif'],
       },
     },
   },

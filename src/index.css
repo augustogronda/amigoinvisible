@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,38 +12,34 @@ body {
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  font-family: 'Comic Sans MS';
+  font-family: 'Quicksand', sans-serif;
 }
 
 .bg-postcard {
-  background: repeating-linear-gradient(
-    45deg,
-    #5CC48A,
-    #5CC48A 30px,
-    #FFFFFF 30px,
-    #FFFFFF 60px,
-    #EF3D3D 60px,
-    #EF3D3D 90px,
-    #FFFFFF 90px,
-    #FFFFFF 120px
-  );
+  background: repeating-linear-gradient(45deg,
+      #5CC48A,
+      #5CC48A 30px,
+      #FFFFFF 30px,
+      #FFFFFF 60px,
+      #EF3D3D 60px,
+      #EF3D3D 90px,
+      #FFFFFF 90px,
+      #FFFFFF 120px);
 }
 
 .bg-postcard-nowhite {
-  background: repeating-linear-gradient(
-    45deg,
-    #5CC48A,
-    #5CC48A 30px,
-    #EF3D3D 30px,
-    #EF3D3D 60px
-  );
+  background: repeating-linear-gradient(45deg,
+      #5CC48A,
+      #5CC48A 30px,
+      #EF3D3D 30px,
+      #EF3D3D 60px);
 }
 
 .flex-0 {
   flex: 0 1 0%;
 }
 
-.postcard > div {
+.postcard>div {
   @apply bg-white;
 }
 
@@ -50,6 +47,7 @@ body {
   0% {
     background-position: 130px 40px, 0 0, 0 0;
   }
+
   100% {
     background-position: 130px 640px, 0 300px, 0 0
   }
