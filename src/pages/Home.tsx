@@ -87,7 +87,7 @@ export function Home() {
 
   const [selectedParticipantId, setSelectedParticipantId] = useState<string | null>(null);
   const [isRulesModalOpen, setIsRulesModalOpen] = useState(false);
-  const [openSection, setOpenSection] = useState<'participants' | 'links' | 'settings'>('participants');
+  const [openSection, setOpenSection] = useState<'participants' | 'links' | 'settings' | null>('participants');
 
   const handleGeneratePairs = () => {
     const assignments = generatePairs(participants);
@@ -146,7 +146,7 @@ export function Home() {
             <Accordion
               title={t('participants.title')}
               isOpen={openSection === 'participants'}
-              onToggle={() => setOpenSection('participants')}
+              onToggle={() => setOpenSection(openSection === 'participants' ? null : 'participants')}
               action={toggleViewButton}
             >
               {isTextView ? (
@@ -171,7 +171,7 @@ export function Home() {
             <Accordion
               title={t('settings.title')}
               isOpen={openSection === 'settings'}
-              onToggle={() => setOpenSection('settings')}
+              onToggle={() => setOpenSection(openSection === 'settings' ? null : 'settings')}
             >
               <Settings
                 instructions={instructions}
@@ -183,7 +183,7 @@ export function Home() {
               <Accordion
                 title={t('links.title')}
                 isOpen={openSection === 'links'}
-                onToggle={() => setOpenSection('links')}
+                onToggle={() => setOpenSection(openSection === 'links' ? null : 'links')}
               >
                 <SecretSantaLinks
                   assignments={assignments}
