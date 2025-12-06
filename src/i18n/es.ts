@@ -18,7 +18,7 @@ export const es = {
   home: {
     vanity: "",
     sponsor: "",
-    title: "Navidad Family Group",
+    title: "Amigo Invisible",
     explanation: [
       "¡Bienvenido! Esta herramienta te ayudará a organizar el intercambio de regalos. Simplemente lista a todos los participantes y asignaremos las parejas al azar según las reglas que establezcas.",
       "Recibirás un enlace único para cada participante, que tendrás que compartir tú mismo (por WhatsApp, email, etc). [<exampleLink>Enlace de ejemplo</exampleLink>]",

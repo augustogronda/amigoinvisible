@@ -1,4 +1,4 @@
-# Navidad Family Group - Amigo Invisible 🎅🎄
+# Amigo Invisible - Amigo Invisible 🎅🎄
 
 ¡Bienvenido a la herramienta oficial para organizar el Amigo Invisible de la familia!
 
