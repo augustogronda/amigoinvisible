@@ -23,10 +23,12 @@ export function Layout({ menuItems, children }: LayoutProps) {
           {children}
         </div>
         <DonationButton />
-        <footer className="mt-12 text-center text-xs text-white/40 hover:text-white/60 transition-colors">
-          <p>
-            Basado en el proyecto <a href="https://github.com/arcanis/secretsanta" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Secret Santa</a> de Maël Nison
-          </p>
+        <footer className="mt-12 text-center text-xs">
+          <div className="inline-block bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm text-gray-800">
+            <p>
+              Basado en el proyecto <a href="https://github.com/arcanis/secretsanta" target="_blank" rel="noopener noreferrer" className="underline hover:text-red-600 font-medium transition-colors">Secret Santa</a> de Maël Nison
+            </p>
+          </div>
         </footer>
       </div>
     </div>
