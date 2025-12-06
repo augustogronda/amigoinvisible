@@ -1,7 +1,7 @@
 export function DonationButton() {
     return (
         <div className="flex justify-center mt-8 mb-4">
-            <a href='https://cafecito.app/gronda' rel='noopener' target='_blank'>
+            <a href='https://cafecito.app/amigoinvisible' rel='noopener' target='_blank'>
                 <img
                     srcSet='https://cdn.cafecito.app/imgs/buttons/button_1.png 1x, https://cdn.cafecito.app/imgs/buttons/button_1_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_1_3.75x.png 3.75x'
                     src='https://cdn.cafecito.app/imgs/buttons/button_1.png'
