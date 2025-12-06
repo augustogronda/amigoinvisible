@@ -95,7 +95,7 @@ Este es tu enlace para conocer quién es tu amigo invisible:
                 className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2 flex-1"
               >
                 <ChatText size={20} weight="bold" />
-                Mensaje
+                Link con mensaje
               </CopyButton>
             </div>
           </React.Fragment>
