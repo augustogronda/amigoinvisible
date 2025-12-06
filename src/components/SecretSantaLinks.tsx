@@ -78,11 +78,11 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
             <CopyButton
               textToCopy={() => {
                 const link = generateAssignmentLink(giver, receiver, hint, instructions);
-                return `¡Hola! 👋
+                return Promise.resolve(`¡Hola! 👋
 Este es tu enlace para conocer quién es tu amigo invisible:
 👉 ${link}
 
-¡Que lo disfrutes y mucha suerte! 🎁✨`;
+¡Que lo disfrutes y mucha suerte! 🎁✨`);
               }}
               className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2"
             >
