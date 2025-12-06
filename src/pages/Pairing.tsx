@@ -11,7 +11,6 @@ import CryptoJS from 'crypto-js';
 import { Layout } from "../components/Layout";
 import { ReceiverData } from "../types";
 import { GiftReveal } from "../components/GiftReveal";
-import { WelcomeModal } from "../components/WelcomeModal";
 import { Countdown } from "../components/Countdown";
 
 async function loadPairing(searchParams: URLSearchParams): Promise<[string, ReceiverData]> {
@@ -86,7 +85,6 @@ export function Pairing() {
 
   return (
     <Layout menuItems={menuItems}>
-      <WelcomeModal />
       <div>
         {!loading && assignment && (
           <motion.div

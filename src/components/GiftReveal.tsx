@@ -7,8 +7,26 @@ interface GiftRevealProps {
     children?: React.ReactNode;
 }
 
+const QUOTES = [
+    { text: "Feliz Navidad, inmundo animal.", author: "Mi Pobre Angelito" },
+    { text: "La mejor manera de difundir la alegría navideña es cantar fuerte para que todos lo escuchen.", author: "Elf" },
+    { text: "No es lo que hay bajo el árbol de Navidad lo que importa, es quiénes están a su alrededor.", author: "Charlie Brown" },
+    { text: "Tal vez la Navidad, pensó, no viene de una tienda. ¡Tal vez la Navidad... quizás... significa un poco más!", author: "El Grinch" },
+    { text: "Ver es creer, pero a veces las cosas más reales del mundo son las que no podemos ver.", author: "El Expreso Polar" },
+    { text: "Honra la Navidad en tu corazón y procura conservarla durante todo el año.", author: "Charles Dickens" },
+    { text: "La Navidad no es un momento ni una estación, sino un estado de la mente.", author: "Calvin Coolidge" },
+    { text: "Ojalá pudiésemos meter el espíritu de Navidad en tarros y abrir uno cada mes del año.", author: "Harlan Miller" },
+    { text: "La Navidad agita una varita mágica sobre el mundo, y por eso, todo es más suave y más hermoso.", author: "Norman Vincent Peale" },
+    { text: "Recuerda, si no encuentras la Navidad en tu corazón, no podrás encontrarla bajo un árbol.", author: "Charlotte Carpenter" }
+];
+
 export function GiftReveal({ name, children }: GiftRevealProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const [quote, setQuote] = useState(QUOTES[0]);
+
+    useEffect(() => {
+        setQuote(QUOTES[Math.floor(Math.random() * QUOTES.length)]);
+    }, []);
 
     const handleOpen = () => {
         if (isOpen) return;
@@ -77,12 +95,33 @@ export function GiftReveal({ name, children }: GiftRevealProps) {
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: "spring", bounce: 0.5 }}
-                        className="text-center"
+                        className="text-center w-full max-w-2xl px-4"
                     >
                         <div className="text-5xl md:text-8xl font-bold text-center p-6 font-dancing-script text-red-600 drop-shadow-md">
                             {name}
                         </div>
-                        {children}
+
+                        <motion.blockquote
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="mb-8 max-w-lg mx-auto bg-white/60 p-6 rounded-xl shadow-sm backdrop-blur-sm"
+                        >
+                            <p className="text-xl md:text-2xl font-dancing-script text-gray-800 mb-2 leading-relaxed">
+                                "{quote.text}"
+                            </p>
+                            <footer className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+                                — {quote.author}
+                            </footer>
+                        </motion.blockquote>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1 }}
+                        >
+                            {children}
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
