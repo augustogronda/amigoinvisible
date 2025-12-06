@@ -30,5 +30,9 @@ Construido con:
 *   Tailwind CSS
 *   Framer Motion (Animaciones)
 
+## 🙏 Créditos
+
+Este proyecto está basado en el núcleo de [Secret Santa](https://github.com/arcanis/secretsanta) creado por [Maël Nison](https://github.com/arcanis). ¡Muchas gracias por el excelente trabajo original!
+
 ---
 ¡Que tengan una muy Feliz Navidad! 🥂
