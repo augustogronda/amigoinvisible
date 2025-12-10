@@ -15,6 +15,8 @@ interface SecretSantaLinksProps {
 
 export function SecretSantaLinks({ assignments, instructions, participants, onGeneratePairs }: SecretSantaLinksProps) {
   const { t } = useTranslation();
+  const [linksMap, setLinksMap] = React.useState<Record<string, string>>({});
+  const [messagesMap, setMessagesMap] = React.useState<Record<string, string>>({});
 
   const currentHash = generateGenerationHash(participants);
   const hasChanged = currentHash !== assignments.hash;
@@ -28,6 +30,29 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
   adjustedPairings.sort((a, b) => {
     return a[0].localeCompare(b[0]);
   });
+
+  React.useEffect(() => {
+    const generateLinks = async () => {
+      const newLinks: Record<string, string> = {};
+      const newMessages: Record<string, string> = {};
+
+      for (const [giver, receiver, hint] of adjustedPairings) {
+        const link = await generateAssignmentLink(giver, receiver, hint, instructions);
+        newLinks[giver] = link;
+
+        newMessages[giver] = `¡Hola! 👋
+Este es tu enlace para conocer quién es tu amigo invisible:
+👉 ${link}
+
+¡Que lo disfrutes y mucha suerte! 🎁✨`;
+      }
+
+      setLinksMap(newLinks);
+      setMessagesMap(newMessages);
+    };
+
+    generateLinks();
+  }, [assignments, instructions, participants]); // Re-run if these change
 
   const handleExportCSV = () => {
     const csvContent = generateCSV(adjustedPairings.map(([giver, receiver]) => [giver, receiver]));
@@ -64,35 +89,29 @@ export function SecretSantaLinks({ assignments, instructions, participants, onGe
         <button
           onClick={handleExportCSV}
           className="p-2 bg-green-500 text-white rounded hover:bg-green-600 flex flex-none items-center gap-2"
+          disabled={Object.keys(linksMap).length === 0}
         >
           <DownloadSimple size={20} weight="bold" />
           {t('links.exportCSV')}
         </button>
       </div>
       <div className="grid grid-cols-[minmax(100px,auto)_1fr] gap-3">
-        {adjustedPairings.map(([giver, receiver, hint]) => (
+        {adjustedPairings.map(([giver]) => (
           <React.Fragment key={giver}>
             <span className="font-medium self-center">
               {giver}:
             </span>
             <div className="flex gap-2">
               <CopyButton
-                textToCopy={() => generateAssignmentLink(giver, receiver, hint, instructions)}
-                className="p-2 bg-transparent border border-gray-400 text-gray-700 rounded hover:bg-gray-100 flex items-center justify-center gap-2 flex-1"
+                textToCopy={linksMap[giver] || ''}
+                className={`p-2 bg-transparent border border-gray-400 text-gray-700 rounded hover:bg-gray-100 flex items-center justify-center gap-2 flex-1 ${!linksMap[giver] ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <Link size={20} weight="bold" />
                 Link
               </CopyButton>
               <CopyButton
-                textToCopy={async () => {
-                  const link = await generateAssignmentLink(giver, receiver, hint, instructions);
-                  return `¡Hola! 👋
-Este es tu enlace para conocer quién es tu amigo invisible:
-👉 ${link}
-
-¡Que lo disfrutes y mucha suerte! 🎁✨`;
-                }}
-                className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2 flex-1"
+                textToCopy={messagesMap[giver] || ''}
+                className={`p-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center justify-center gap-2 flex-1 ${!messagesMap[giver] ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 <ChatText size={20} weight="bold" />
                 Link con mensaje

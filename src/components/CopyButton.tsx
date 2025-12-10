@@ -4,7 +4,7 @@ import { useState } from "react";
 import { copyTextToClipboard } from "../utils/clipboard";
 
 interface CopyButtonProps {
-  textToCopy: string | (() => string | Promise<string>);
+  textToCopy: string;
   className?: string;
   children?: React.ReactNode;
 }
@@ -13,12 +13,10 @@ export function CopyButton({ textToCopy, className = "", children }: CopyButtonP
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = async () => {
-    try {
-      const text = typeof textToCopy === 'function'
-        ? await textToCopy()
-        : textToCopy;
+    if (!textToCopy) return;
 
-      const success = await copyTextToClipboard(text);
+    try {
+      const success = await copyTextToClipboard(textToCopy);
       if (success) {
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
