@@ -19,15 +19,30 @@ export async function copyTextToClipboard(text: string): Promise<boolean> {
         textArea.value = text;
 
         // Ensure the textarea is not visible but part of the DOM
-        textArea.style.position = "fixed";
+        // Avoids strict visibility checks on some browsers while keeping it out of view
+        textArea.setAttribute('readonly', '');
+        textArea.style.position = "absolute";
         textArea.style.left = "-9999px";
-        textArea.style.top = "0";
+        textArea.style.fontSize = "12pt"; // Prevent zooming on iOS
         document.body.appendChild(textArea);
 
-        textArea.focus();
+        // iOS-compatible selection
+        const range = document.createRange();
+        range.selectNodeContents(textArea);
+        const selection = window.getSelection();
+        if (selection) {
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+
         textArea.select();
+        textArea.setSelectionRange(0, 999999); // For mobile devices
 
         const successful = document.execCommand('copy');
+
+        if (selection) {
+            selection.removeAllRanges();
+        }
         document.body.removeChild(textArea);
 
         return successful;
