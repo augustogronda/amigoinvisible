@@ -1,6 +1,7 @@
 import { Check, Copy } from "@phosphor-icons/react";
 import { t } from "i18next";
 import { useState } from "react";
+import { copyTextToClipboard } from "../utils/clipboard";
 
 interface CopyButtonProps {
   textToCopy: string | (() => string | Promise<string>);
@@ -17,9 +18,13 @@ export function CopyButton({ textToCopy, className = "", children }: CopyButtonP
         ? await textToCopy()
         : textToCopy;
 
-      await navigator.clipboard.writeText(text);
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
+      const success = await copyTextToClipboard(text);
+      if (success) {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      } else {
+        console.error('Failed to copy text');
+      }
     } catch (err) {
       console.error('Failed to copy:', err);
     }
